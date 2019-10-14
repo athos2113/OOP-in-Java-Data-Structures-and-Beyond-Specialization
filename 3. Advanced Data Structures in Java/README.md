@@ -65,7 +65,6 @@ Your goals in this assignment are to design and implement a set of classes that 
 
 MapGraph is a directed graph that represents the road connections between intersections. Vertices in a MapGraph are GeographicPoints (latitude, longitude pairs) that correspond to intersections or dead ends between roads, while the edges are the road segments between these intersections. This graph is directed, so each pair of nodes on a two-way street will have two edges between them: one in each direction.
 
-![project2](project1.png)
 
 ### Part 4: Extending and Improving Graph Search
 In this project, you will augment your classes to support the execution of Dijkstra's algorithm to find the shortest path through a weighted graph and to support execution of the A Star Search algorithm which optimizes search for our project.
