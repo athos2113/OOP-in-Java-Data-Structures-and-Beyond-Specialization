@@ -38,22 +38,44 @@ In this capstone project, you will explore some of these issues. Which questions
 
 
 
-Here is an overview of the assignments in each week to help you get a sense of the project and plan your time:
+### Questions
+**Easier:** For a given user, which of their friends aren’t connected as friends? For example, if the given user, Maria, is friends
+with both Jamaal and Huang, if Jamaal and Huang are not friends, we’ll suggest them as potential friends.
 
-### Week 1:
-Warm up assignment (required, auto-graded) In this first assignment you will start to work with some real-world social network data and implement some graph algorithms to help you warm up and dive back into data structures and Java programming.  
+**Harder:** Find the Exact Cover Set. Figure out the smallest set of people who are connected to everyone in the network. For example, if everyone in the smallest set were to post something to their friends, everyone would see the post.
 
-## Week 2:
-Project scope and definition (required, peer-graded) In this second week you will define the scope of your project. This assignment will involve selecting a data set, determining what questions you will ask about your data, finding or developing the data structures and algorithms to answer those questions, and doing a preliminary analysis of the running time of these algorithms.  
+### Algorithms, Data Structures, and Answer to Question
+**Main Data Structure:** The network has been laid out as a classic graph using an adjacency list. Each individual in the graph
+is a vertex and an edge between vertices represents a friendship. This should work for both problems. Each node is stored as the key in a HashMap, with values representing the node’s outgoing edges, stored as a HashSet for quick O(1) lookup.
 
-## Week 3:
-Mini-project and report (optional, peer graded) One of the questions you will pick in Week 2 to ask about your data set is required to be relatively easy to answer. This will allow you to go through the "full cycle" of the capstone project from question formulation to implementation to report and get some early feedback on each of these components, before you repeat the process on a more challenging question and algorithm. In this week, you'll do this first "full cycle".  
+The exact cover problem is represented in Algorithm X using a matrix A consisting of 0s and 1s. The goal is to select a subset of the rows so that the digit 1 appears in each column exactly once.
 
-## Week 4:
-Main project checkpoint (optional, peer graded) In week 4 you should be well into the investigations of the questions you laid out in week 2, and you should have already gotten some feedback from your peers about the scope of your projects which you will be using to guide and refine your work. This week you have the option to report on your progress and again get guidance from your peers to ensure that you will pass the main report assignment in week 5.  
+[Algorithm X](https://en.wikipedia.org/wiki/Knuth%27s_Algorithm_X) functions as follows:
 
-## Week 5:
-Main project report (required, peer graded) In week 5 you will complete the implementation of your project and submit your code and a final written report (including an analysis of your algorithm(s)) for peer review. You will also perform peer review on your peers' submitted project reports.  
+    If the matrix A has no columns, the current partial solution
 
-## Week 6:
-Oral project report (required, peer graded) In week 6 you will complete an assignment very similar to the assignment you completed in week 3 of our course on Mastering the Software Engineering Interview. We will ask you to submit a video in which you give an oral presentation addressing specific aspects of your project. You will also perform peer review on your peers' submitted oral presentations.
+    is a valid solution; terminate successfully. 
+   
+    Otherwise, choose a column c (deterministically). 
+
+    Choose a row r such that A[r] = 1 (nondeterministically). 
+
+    Include row r in the partial solution. 
+
+    For each column j such that A[r][j] = 1,
+
+        for each row i such that A[i][j] = 1, 
+        
+            delete row i from matrix A. 
+            
+        delete column j from matrix A. 
+      
+    Repeat this algorithm recursively on the reduced matrix A. 
+
+
+
+### Test Results
+
+    //facebook_1000 -> 214
+    //facebook_2000 -> 223
+    //facebook_ucsd -> 357 (16K Nodes)
